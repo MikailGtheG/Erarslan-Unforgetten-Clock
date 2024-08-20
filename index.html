@@ -1,10 +1,12 @@
 async function startTime() {
     try {
-
-        const response = await fetch('http://worldtimeapi.org/api/timezone/Europe/Berlin');
+        // Abrufen der aktuellen Zeit und des Datums von der API
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Berlin');
         const data = await response.json();
         const dateTime = new Date(data.datetime);
-        
+
+        console.log(dateTime);  // Debugging
+
         const BezeichnungMonate = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
         const BezeichnungWochentage = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
         const Jahr = dateTime.getFullYear();
@@ -13,7 +15,7 @@ async function startTime() {
         const Stunde = dateTime.getHours();
         const Minute = fixZeroes(dateTime.getMinutes());
         const Datum = dateTime.getDate();
-        
+
         let Tageszeit = "";
         let TageszeitIcon = "";
         if (Stunde >= 5 && Stunde < 11) {
