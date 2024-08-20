@@ -1,6 +1,6 @@
 async function startTime() {
     try {
-        const response = await fetch('http://worldtimeapi.org/api/timezone/Europe/Berlin');
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Berlin');
         const data = await response.json();
         const dateTime = new Date(data.datetime);
         
