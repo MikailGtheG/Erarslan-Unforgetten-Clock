@@ -6,7 +6,7 @@ async function startTime() {
         
         updateClock(dateTime);
 
-        setTimeout(startTime, 30000);
+        setTimeout(startTime,2000);
 
     } catch (error) {
         const today = new Date();
