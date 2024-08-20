@@ -1,8 +1,9 @@
 async function startTime() {
     try {
-        const response = await fetch('http://worldtimeapi.org/api/timezone/Europe/Berlin');
+        const response = await fetch('https://worldtimeapi.org/api/timezone/Europe/Berlin');
         const data = await response.json();
         const dateTime = new Date(data.datetime);
+        
         const BezeichnungMonate = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
         const BezeichnungWochentage = ["Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi"];
         const Jahr = dateTime.getFullYear();
@@ -40,17 +41,9 @@ async function startTime() {
         setTimeout(startTime, 1000);
 
     } catch (error) {
-        console.error("Fehler beim Abrufen der Zeitdaten:", error);
         const today = new Date();
         const Stunde = today.getHours();
         const Minute = fixZeroes(today.getMinutes());
-        const Jahr = today.getFullYear();
-        const Monat = BezeichnungMonate[today.getMonth()];
-        const Datum = today.getDate();
-        const Tag = BezeichnungWochentage[today.getDay()];
-        
-        document.getElementById('wtl-Tag').innerHTML = Tag.toUpperCase();
-        document.getElementById('wtl-Datum').innerHTML = "<small>" + Datum + "</sup> " + Monat + " " + Jahr + "</small>";
         document.getElementById('wtl-Uhrzeit').innerHTML = Stunde + ":" + Minute;
     }
 }
