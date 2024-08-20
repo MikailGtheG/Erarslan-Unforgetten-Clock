@@ -6,7 +6,12 @@ async function startTime() {
         
         updateClock(dateTime);
 
-        setTimeout(startTime,2000);
+        setInterval(async () => {
+            const newResponse = await fetch('https://worldtimeapi.org/api/timezone/Europe/Berlin');
+            const newData = await newResponse.json();
+            const newDateTime = new Date(newData.datetime);
+            updateClock(newDateTime);
+        }, 2000);
 
     } catch (error) {
         const today = new Date();
